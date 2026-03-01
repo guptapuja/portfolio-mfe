@@ -8,7 +8,10 @@ app.use(cors());
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: "*" } // Allow your Shell (5005) and Chat (5001)
+  cors: {
+    origin: ["https://lumina-dashboard-shell.pages.dev", "https://7b30e9b9.lumina-chat-remote.pages.dev"],
+    methods: ["GET", "POST"]
+  }
 });
 
 io.on('connection', (socket) => {
