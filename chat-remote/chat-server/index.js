@@ -23,4 +23,7 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(3003, () => console.log('Socket Server running on port 3003'));
+// server.listen(3003, () => console.log('Socket Server running on port 3003'));
+// index.js (Line 26)
+const PORT = process.env.PORT || 3003;
+server.listen(PORT, () => console.log(`Socket Server running on port ${PORT}`));
