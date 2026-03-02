@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
-
+console.log("Connecting to:", import.meta.env.VITE_SOCKET_URL);
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3003';
 const socket = io(SOCKET_URL);
 

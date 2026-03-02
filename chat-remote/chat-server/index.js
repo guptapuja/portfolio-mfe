@@ -1,3 +1,4 @@
+// index.js
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -9,21 +10,20 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://lumina-dashboard-shell.pages.dev", "https://7b30e9b9.lumina-chat-remote.pages.dev"],
+    // Add your LOCAL Vite dev URL here
+    origin: ["http://localhost:5005", "http://localhost:5173", "https://lumina-dashboard-shell.pages.dev"],
     methods: ["GET", "POST"]
   }
 });
 
 io.on('connection', (socket) => {
-  console.log('A user connected');
+  console.log('✅ A user connected:', socket.id);
 
   socket.on('send_message', (data) => {
-    // Broadcast to everyone including the sender
+    console.log('📩 Message received:', data);
     io.emit('receive_message', data);
   });
 });
 
-// server.listen(3003, () => console.log('Socket Server running on port 3003'));
-// index.js (Line 26)
 const PORT = process.env.PORT || 3003;
-server.listen(PORT, () => console.log(`Socket Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`🚀 Local Server running on http://localhost:${PORT}`));
